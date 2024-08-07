@@ -5,7 +5,7 @@ const LandingPage = () => {
     <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="flex justify-center">
         <Link to="#" >
-          <div className="bg-muted rounded-full w-44 h-20 flex items-center justify-center">
+          <div className=" rounded-full w-44 h-20 flex items-center justify-center">
             <img className="h-20 w-44 text-primary" src="/logo.png" />
           </div>
         </Link>
