@@ -16,7 +16,7 @@ import {
 import { Products } from "@/types/product.t";
 import axios from "axios";
 import { MoveHorizontalIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 export const ProductTable = () => {
@@ -65,6 +65,11 @@ export const ProductTable = () => {
                 <TableHead className="hidden md:table-cell">Category</TableHead>
                 <TableHead className="text-right">Price</TableHead>
                 <TableHead className="hidden sm:table-cell">Stock</TableHead>
+                <TableHead className="hidden sm:table-cell">
+                  Collection
+                </TableHead>
+                <TableHead className="hidden sm:table-cell">Color</TableHead>
+                <TableHead className="hidden sm:table-cell">Size</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -91,6 +96,15 @@ export const ProductTable = () => {
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
                     {product.stock.toString()}
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    {product.collection}
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    {product.color.join(", ")}
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    {product.size.join(", ")}
                   </TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
