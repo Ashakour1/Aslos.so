@@ -1,0 +1,19 @@
+{
+  "name": "aslos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "author": "abdishakour",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "mongodb": "^6.8.0",
+    "nodemon": "^3.1.4",
+    "prisma": "^5.18.0"
+  }
+}
