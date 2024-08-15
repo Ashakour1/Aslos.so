@@ -1,19 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
-import { formData } from "@/types/product.t";
+import { productData } from "@/types/product.t";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductForm = () => {
   const imageRef = useRef<HTMLInputElement | null>(null);
 
-  const [formData, setFormData] = useState<formData>({
+  const [formData, setFormData] = useState<productData>({
     name: "",
     description: "",
     sex: "",
     category: "",
     price: 0,
     stock: 0,
+    collection: "",
+    color: "",
+    size: "",
     image: "",
   });
 
@@ -40,6 +43,12 @@ const ProductForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const productData = {
+  //   ...formData,
+  //   color: formData.color.split(",").map((color) => color.trim()),
+  //   size: formData.size.split(",").map((size) => size.trim()),
+  // };
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -62,6 +71,9 @@ const ProductForm = () => {
     formdata.append("category", formData.category);
     formdata.append("price", formData.price.toString());
     formdata.append("stock", formData.stock.toString());
+    formdata.append("collection", formData.collection);
+    formdata.append("color", JSON.stringify(formData.color));
+    formdata.append("size", JSON.stringify(formData.size));
     formdata.append("image", formData.image);
 
     try {
@@ -202,6 +214,60 @@ const ProductForm = () => {
               onChange={handleChange}
             />
           </div>
+        </div>
+        <div className="flex flex-col">
+          <label
+            className="mb-1 text-sm font-medium text-gray-700"
+            htmlFor="collection"
+          >
+            Collection
+          </label>
+          <select
+            name="collection"
+            className="rounded-md border border-gray-300 p-2 text-sm text-black focus:border-primary focus:ring-primary"
+            id="collection"
+            onChange={handleChange}
+            value={formData.collection}
+          >
+            <option value="">Select Collection</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+          </select>
+        </div>
+        <div className="flex flex-col">
+          <label
+            className="mb-1 text-sm font-medium text-gray-700"
+            htmlFor="color"
+          >
+            Color
+          </label>
+          <input
+            className="rounded-md border border-gray-300 bg-gray-50 p-2 text-sm text-black focus:border-primary focus:ring-primary"
+            id="color"
+            placeholder="Enter the available colors (separated by commas)"
+            type="text"
+            name="color"
+            value={formData.color}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label
+            className="mb-1 text-sm font-medium text-gray-700"
+            htmlFor="size"
+          >
+            Size
+          </label>
+          <input
+            className="rounded-md border border-gray-300 bg-gray-50 p-2 text-sm text-black focus:border-primary focus:ring-primary"
+            id="size"
+            placeholder="Enter the available sizes (separated by commas)"
+            type="text"
+            name="size"
+            value={formData.size}
+            onChange={handleChange}
+          />
         </div>
         <div className="flex flex-col">
           <label
