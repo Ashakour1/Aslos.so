@@ -18,7 +18,7 @@ function App() {
           <Route path="/shop/cat/:category" element={<Products />} />
           <Route path="/shop/coll/:collection" element={<Products />} />
           <Route path="/shop/" element={<Products />} />
-          <Route path="/shop/*" element={<NotFound />} />
+          {/* <Route path="/shop/*" element={<NotFound />} /> */}
         </Routes>
       </Router>
     </>
