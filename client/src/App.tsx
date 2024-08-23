@@ -1,7 +1,7 @@
 import "./App.css";
-import Header from "./components/Header";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // import Header from "./components/Header";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
