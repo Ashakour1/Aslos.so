@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "db-push": "npx prisma db push"
   },
   "author": "abdishakour",
   "license": "ISC",
@@ -13,9 +14,11 @@
     "@prisma/client": "^5.18.0",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.4",
