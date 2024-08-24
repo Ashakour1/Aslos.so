@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/nav/Header.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
+import ProductFormPage from "./pages/ProductFormPage.tsx";
+import ProductPage from "./pages/ProductPage.tsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <Toaster />
+        <Header />
+        <Routes>
+          <Route path="/dashboard/products/add" element={<ProductFormPage />} />
+          <Route path="/dashboard/product/update/:id" element={<ProductFormPage />} />
+          
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/products" element={<ProductPage />} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
