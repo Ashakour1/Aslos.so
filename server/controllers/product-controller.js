@@ -96,10 +96,9 @@ export const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { name, description, category, price, stock } = req.body;
 
+  // Find the product by its ID
   const product = await prisma.product.findUnique({
-    where: {
-      id: id,
-    },
+    where: { id },
   });
 
   if (!product) {
@@ -107,28 +106,31 @@ export const updateProduct = asyncHandler(async (req, res) => {
     throw new Error("Product not found");
   }
 
-  let result = null
+  let imageUrl = product.image; // Keep the existing image URL by default
+
   if (req.file) {
     const encodedImage = `data:image/jpeg;base64,${req.file.buffer.toString(
       "base64"
     )}`;
 
-     result = await cloudinary.uploader.upload(encodedImage, {
+    const result = await cloudinary.uploader.upload(encodedImage, {
       resource_type: "image",
       transformation: [{ width: 500, height: 500, crop: "limit" }],
     });
+
+    imageUrl = result.url; // Update the image URL if a new image is uploaded
   }
+
+  // Update the product with the new data
   const updatedProduct = await prisma.product.update({
-    where: {
-      id: id,
-    },
+    where: { id },
     data: {
       name,
       description,
       category,
       price: parseFloat(price),
       stock: parseInt(stock),
-      image: result?.url || null,
+      image: imageUrl, // Use the existing or new image URL
     },
   });
 
