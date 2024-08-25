@@ -1,7 +1,8 @@
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import prisma from "../config/prisma.js";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/config.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, username, email, password } = req.body;
@@ -70,17 +71,22 @@ export const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid credentials");
   }
 
+  const expiresIn = 60 * 60 * 24 * 30;
+
   const token = jwt.sign(
     {
       id: user.id,
     },
     JWT_SECRET,
-    { expiresIn: "30d" }
+    { expiresIn: expiresIn }
   );
 
   res.status(200).json({
+    data: {
+      user: user,
+      token,
+      expiresIn,
+    },
     message: "Login successfully",
-    user: user,
-    token,
   });
 });
