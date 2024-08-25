@@ -19,11 +19,11 @@ const Header = () => {
   return (
     <header className="bg-white shadow-md">
       <div className="max-w-[1140px] mx-auto px-4 py-2 flex md:justify-between items-center">
-        <div className="logo flex-1">
+        <div className="logo flex-1 md:flex-none">
           <img className="w-16" src="logo-2.png" alt="logo" />
         </div>
         <div className="">
-          <NavigationMenu className="md:flex hidden">
+          <NavigationMenu className="hidden md:flex flex-1 ">
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-black font-normal">
@@ -136,12 +136,12 @@ const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex-2 px-6">
+        <div className="flex-2 md:flex pr-2">
           <CiShoppingCart className="text-3xl" />
         </div>
         {/* mobile */}
-        <div>
-          <button onClick={OpenNavbar} className="md:hidden mt-2">
+        <div onClick={OpenNavbar} className="md:hidden block ">
+          <button className=" mt-2">
             <RiMenuFill className="text-2xl text-gray-700" />
           </button>
         </div>
