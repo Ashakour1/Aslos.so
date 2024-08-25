@@ -34,5 +34,63 @@ model Product {
   image String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Order Order[]
+  OrderItem OrderItem[]
 
+}
+
+model Order {
+  id String @id @default(auto())@map("_id")@db.ObjectId
+  total Float
+  product_id String @db.ObjectId
+  product Product @relation(fields: [product_id], references: [id])
+  status OrderStatus @default(Pending)
+  paymentStatus PaymentStatus @default(Pending)
+  paymentMethod String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  OrderItem OrderItem[]
+  Shipping Shipping[]
+}
+
+model OrderItem {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId    String   @db.ObjectId
+  productId  String   @db.ObjectId
+  quantity   Int
+  product    Product  @relation(fields: [productId], references: [id])
+  order      Order    @relation(fields: [orderId], references: [id])
+}
+
+model Shipping {
+  id String @id @default(auto())@map("_id")@db.ObjectId
+  orderId String @db.ObjectId
+  order Order @relation(fields: [orderId], references: [id])
+  name String
+  phone String
+  email String
+  usageCount String
+  address String
+  city String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  Pending
+  Processing
+  Delivered
+  Cancelled
+  Shipped
+  Returned
+  Refunded
+  Completed
+  
+}
+
+enum PaymentStatus {
+  Pending
+  Paid
+  Failed
 }
