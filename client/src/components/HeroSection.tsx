@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative flex flex-col  z-0 w-full h-screen overflow-hidden">
       {/* Desktop Image */}
       <img
         src="/landing.png"
