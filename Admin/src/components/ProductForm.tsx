@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { formData } from "@/types/product.t";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductForm = () => {
+
+  const imageRef = useRef<HTMLInputElement | null>(null);
+  
   const [formData, setFormData] = useState<formData>({
     name: "",
     description: "",
@@ -187,6 +190,7 @@ const ProductForm = () => {
             Image
           </label>
           <input
+          ref={imageRef}
             className="rounded-md border border-gray-300 bg-gray-50 p-2 text-sm text-black focus:border-primary focus:ring-primary"
             id="image"
             type="file"
