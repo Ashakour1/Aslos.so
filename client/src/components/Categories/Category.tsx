@@ -1,4 +1,4 @@
-import { type Category } from "../types/category.t";
+import { type Category } from "../../types/category.t";
 
 type CategoryProps = {
   category: Category;
@@ -6,7 +6,7 @@ type CategoryProps = {
 const Category = ({ category }: CategoryProps) => {
   return (
     <div>
-      <div className="relative my-2">
+      <div className="relative">
         <img
           src={category.image}
           className="absolute inset-0 h-full object-cover w-full"

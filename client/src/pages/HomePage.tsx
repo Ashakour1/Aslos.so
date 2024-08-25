@@ -1,4 +1,4 @@
-import CategorySection from "@/components/CategoriesSection";
+import CategorySection from "@/components/Categories/CategoriesSection";
 import HeroSection from "@/components/HeroSection";
 
 const HomePage = () => {
