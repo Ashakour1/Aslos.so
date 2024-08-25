@@ -20,7 +20,6 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 export const ProductTable = () => {
-
   const [products, setProducts] = useState<Products[]>([]);
 
   const navigate = useNavigate();
@@ -34,16 +33,14 @@ export const ProductTable = () => {
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  });
+  fetchProducts();
 
   const handleDelete = async (id: string) => {
     try {
-      if(!confirm('Are you sure you want to delete this product')) return;
+      if (!confirm("Are you sure you want to delete this product")) return;
       await axios.delete(`/api/products/delete/${id}`);
       fetchProducts();
-      toast.success('Product deleted successfully');
+      toast.success("Product deleted successfully");
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +48,7 @@ export const ProductTable = () => {
 
   const handleUpdate = (id: string) => {
     navigate(`/dashboard/product/update/${id}`);
-  }
+  };
 
   return (
     <>
@@ -101,7 +98,11 @@ export const ProductTable = () => {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => handleUpdate(product.id)}>Edit</DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => handleUpdate(product.id)}
+                        >
+                          Edit
+                        </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() => handleDelete(product.id)}
                         >
