@@ -20,7 +20,7 @@ const Header = () => {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
+                <NavigationMenuTrigger>SHOP</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
                     <NavigationMenuLink asChild>
@@ -53,7 +53,7 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Collection</NavigationMenuTrigger>
+                <NavigationMenuTrigger>COLLECTION</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
                     <NavigationMenuLink asChild>
@@ -86,7 +86,7 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Explore</NavigationMenuTrigger>
+                <NavigationMenuTrigger>EXPLORE</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
                     <h1 className="pl-4 pt-4 font-semibold text-gray-500 text-sm">
