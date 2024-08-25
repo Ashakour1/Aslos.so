@@ -1,32 +1,41 @@
-import { Link } from "react-router-dom";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardHeader,
+  CardContent,
   CardDescription,
-  CardTitle,
   CardFooter,
-  CardContent
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Table,
-  TableHeader,
-  TableRow,
-  TableHead,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { MoveHorizontalIcon, Package2Icon } from "lucide-react";
+import { useUser } from "@/hooks/useUser";
+import { MoveHorizontalIcon } from "lucide-react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
+  const { user } = useUser();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  });
   return (
     <div className="max-w-[1200px] mx-auto flex flex-col  min-h-screen">
       <main className="flex-1 grid gap-4 p-4 md:p-6">
