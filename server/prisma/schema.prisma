@@ -72,7 +72,6 @@ model Shipping {
   usageCount String
   address String
   city String
-  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
