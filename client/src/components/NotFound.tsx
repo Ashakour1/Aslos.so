@@ -1,5 +1,10 @@
 const NotFound = () => {
-  return <div>NotFound</div>;
+  return (
+    <div className="flex flex-col justify-center items-center text-center min-h-screen">
+      <h1>404 Not Found</h1>
+      <p>Sorry, the page you are looking for does not exist.</p>
+    </div>
+  );
 };
 
 export default NotFound;
