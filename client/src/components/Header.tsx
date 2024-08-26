@@ -31,29 +31,26 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
+                    <h1 className="pl-4 py-4 font-semibold text-gray-500 text-sm">
+                      OUR 
+                    </h1>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="/home"
-                        className="group grid h-auto w-full items-start justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none  disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        to="#"
+                        className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
-                          Male
-                        </div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Shop the latest male collections.
+                        <div className="text-sm font-medium leading-none ">
+                          MALE
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         to="#"
-                        className="group grid h-auto w-full items-start justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
-                          Female
-                        </div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Shop the latest female collections.
+                        <div className="text-sm font-medium leading-none ">
+                          FEMALE
                         </div>
                       </Link>
                     </NavigationMenuLink>
@@ -66,29 +63,26 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
+                    <h1 className="pl-4 py-4 font-semibold text-gray-500 text-sm">
+                      OUR COLLECTION
+                    </h1>
                     <NavigationMenuLink asChild>
                       <Link
                         to="#"
-                        className="group grid h-auto w-full items-start justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
-                          Spring
-                        </div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Explore our spring collection.
+                        <div className="text-sm font-medium leading-none ">
+                          SPRING
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         to="#"
-                        className="group grid h-auto w-full items-start justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
-                          Summer
-                        </div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Discover our summer collection.
+                        <div className="text-sm font-medium leading-none ">
+                          SUMMER
                         </div>
                       </Link>
                     </NavigationMenuLink>
@@ -101,32 +95,26 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
-                    <h1 className="pl-4 pt-4 font-semibold text-gray-500 text-sm">
+                    <h1 className="pl-4 py-4 font-semibold text-gray-500 text-sm">
                       ABOUT
                     </h1>
                     <NavigationMenuLink asChild>
                       <Link
                         to="#"
-                        className="group grid h-auto w-full items-start justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        className="group grid h-auto w-full items-start justify-start x rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
-                          Our Philosophy
-                        </div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Learn about our guiding principles and values.
+                        <div className="text-sm font-medium leading-none ">
+                          OUR PHILOSOPHY
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         to="#"
-                        className="group grid h-auto w-full items-start justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
                         <div className="text-sm font-medium leading-none group-hover:underline">
-                          Design Principles
-                        </div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Discover our design principles.
+                          DESIGN PRINCIPLES
                         </div>
                       </Link>
                     </NavigationMenuLink>
