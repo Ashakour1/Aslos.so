@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import HeaderMobile from "./HeaderMobile";
+import { useUser } from "@/hooks/useUser";
 
 export const routes = [
   {
@@ -52,6 +53,8 @@ const Header = () => {
   //   setNavIsOpen(false);
   // };
 
+  const {logout } = useUser();
+
   return (
     <div>
       <header className="max-w-[1200px] mx-auto flex justify-between h-16 items-center text-black gap-4 border-b x-4 md:px-6">
@@ -85,7 +88,7 @@ const Header = () => {
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={logout} >Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
