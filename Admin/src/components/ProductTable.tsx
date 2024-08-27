@@ -60,6 +60,8 @@ export const ProductTable = () => {
                 <TableHead className="w-[100px]">Name</TableHead>
                 <TableHead className="hidden sm:table-cell">Image</TableHead>
                 <TableHead className="min-w-[150px]">Description</TableHead>
+                <TableHead className="min-w-[150px]">Sex</TableHead>
+
                 <TableHead className="hidden md:table-cell">Category</TableHead>
                 <TableHead className="text-right">Price</TableHead>
                 <TableHead className="hidden sm:table-cell">Stock</TableHead>
@@ -80,6 +82,7 @@ export const ProductTable = () => {
                   <TableCell className="min-w-[150px]">
                     {product.description}
                   </TableCell>
+                  <TableCell className="min-w-[150px]">{product.sex}</TableCell>
                   <TableCell className="hidden md:table-cell">
                     {product.category}
                   </TableCell>
