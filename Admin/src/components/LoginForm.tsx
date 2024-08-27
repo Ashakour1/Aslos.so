@@ -11,15 +11,15 @@ const LoginForm = () => {
     password: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { user,login } = useUser();
+  const { user, login } = useUser();
 
   useEffect(() => {
-    if(user){
-        navigate("/dashboard")
+    if (user) {
+      navigate("/dashboard");
     }
-  },[user])
+  }, [user]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,10 +29,10 @@ const LoginForm = () => {
     try {
       const { data } = await axios.post("/api/auth/login", formData);
       login(data);
-      toast.success(data.message)
-      navigate("/dashboard")
+      toast.success(data.message);
+      navigate("/dashboard");
     } catch (error) {
-     toast.error((error as any).response.data.message );
+      toast.error((error as any).response.data.message);
     }
   };
   return (
