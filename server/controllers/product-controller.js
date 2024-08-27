@@ -6,8 +6,36 @@ import cloudinary from "../config/cloudinary.js";
 // @route   GET /api/products
 // @access  Public
 export const getProducts = asyncHandler(async (req, res) => {
-  const products = await prisma.product.findMany();
-  res.json(products);
+  const qNew = req.query.new;
+
+  const { sex, category } = req.query;
+
+  try {
+    let products;
+
+    if (qNew) {
+      products = (await prisma.product.findMany())
+        .sort({ createdAt: -1 })
+        .limit(10);
+    } else if (category) {
+      products = await prisma.product.findMany({
+        where: {
+          category,
+        },
+      });
+    } else if (sex) {
+      products = await prisma.product.findMany({
+        where: {
+          sex,
+        },
+      });
+    } else {
+      products = await prisma.product.findMany();
+    }
+    res.status(200).json(products);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // @desc    Fetch single product
@@ -36,11 +64,11 @@ export const getProductById = asyncHandler(async (req, res) => {
 
 export const createProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, category, price, stock } = req.body;
+    const { name, description, sex, category, price, stock } = req.body;
 
     // console.log(name, description, category, price, stock);
 
-    if (!name || !description || !category || !price || !stock) {
+    if (!name || !description || !sex || !category || !price || !stock) {
       res.status(400);
       throw new Error("Please fill all the fields");
     }
@@ -72,6 +100,7 @@ export const createProduct = asyncHandler(async (req, res) => {
       data: {
         name,
         description,
+        sex,
         category,
         price: parseFloat(price),
         stock: parseInt(stock),
@@ -94,7 +123,12 @@ export const createProduct = asyncHandler(async (req, res) => {
 // access private/admin
 export const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { name, description, category, price, stock } = req.body;
+  const { name, description, sex, category, price, stock } = req.body;
+
+  if (!name || !description || !sex || !category || !price || !stock) {
+    res.status(400);
+    throw new Error("Please fill all the fields");
+  }
 
   // Find the product by its ID
   const product = await prisma.product.findUnique({
@@ -127,6 +161,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
     data: {
       name,
       description,
+      sex,
       category,
       price: parseFloat(price),
       stock: parseInt(stock),
