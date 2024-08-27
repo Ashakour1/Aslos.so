@@ -16,11 +16,15 @@ const Header = () => {
   const OpenNavbar = () => {
     setOpenNav(!openNav);
   };
+
+  const handleNavClick = (path : any) => {
+    window.location.href = path; // This triggers a full page reload
+  };
   return (
     <header className="bg-white shadow-md">
       <div className="max-w-[1140px] mx-auto px-4 py-2 flex md:justify-between items-center">
         <div className="logo flex-1 md:flex-none">
-          <img className="w-16" src="logo-2.png" alt="logo" />
+          <img className="w-16" src="/logo-2.png" alt="logo" />
         </div>
         <div className="">
           <NavigationMenu className="hidden md:flex flex-1 ">
@@ -32,12 +36,13 @@ const Header = () => {
                 <NavigationMenuContent>
                   <div className="grid w-[400px] p-2">
                     <h1 className="pl-4 py-4 font-semibold text-gray-500 text-sm">
-                      OUR 
+                      OUR
                     </h1>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="#"
+                        to="/shope/male"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        onClick={() => handleNavClick("/shope/male")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           MALE
@@ -46,8 +51,9 @@ const Header = () => {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="#"
+                        to="/shope/female"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        onClick={() => handleNavClick("/shope/female")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           FEMALE
