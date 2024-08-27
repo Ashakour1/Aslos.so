@@ -5,12 +5,12 @@ import { formData } from "@/types/product.t";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductForm = () => {
-
   const imageRef = useRef<HTMLInputElement | null>(null);
-  
+
   const [formData, setFormData] = useState<formData>({
     name: "",
     description: "",
+    sex: "",
     category: "",
     price: 0,
     stock: 0,
@@ -29,10 +29,10 @@ const ProductForm = () => {
   };
 
   useEffect(() => {
-    if(id) {
+    if (id) {
       fetchStudents();
     }
-  },[id]);
+  }, [id]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -58,6 +58,7 @@ const ProductForm = () => {
     const formdata = new FormData();
     formdata.append("name", formData.name);
     formdata.append("description", formData.description);
+    formdata.append("sex", formData.sex);
     formdata.append("category", formData.category);
     formdata.append("price", formData.price.toString());
     formdata.append("stock", formData.stock.toString());
@@ -129,6 +130,26 @@ const ProductForm = () => {
         <div className="flex flex-col">
           <label
             className="mb-1 text-sm font-medium text-gray-700"
+            htmlFor="description"
+          >
+            Sex
+          </label>
+          <select
+            name="sex"
+            className="rounded-md border border-gray-300 p-2 text-sm text-black focus:border-primary focus:ring-primary"
+            id="sex"
+            onChange={handleChange}
+            value={formData.sex}
+          >
+            <option value="">Select Sex</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div className="flex flex-col">
+          <label
+            className="mb-1 text-sm font-medium text-gray-700"
             htmlFor="category"
           >
             Category
@@ -190,7 +211,7 @@ const ProductForm = () => {
             Image
           </label>
           <input
-          ref={imageRef}
+            ref={imageRef}
             className="rounded-md border border-gray-300 bg-gray-50 p-2 text-sm text-black focus:border-primary focus:ring-primary"
             id="image"
             type="file"
