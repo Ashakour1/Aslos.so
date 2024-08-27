@@ -15,11 +15,15 @@ export const authMiddleware = asyncHandler(async (req, res, next) => {
 
       const decoded = jwt.verify(token, JWT_SECRET);
 
+      // console.log("decoded" + decoded.id);
+
       const user = await prisma.user.findUnique({
         where: {
           id: decoded.id,
         },
       });
+
+      // console.log("user auth" + user.id);
 
       req.user = user;
 
@@ -29,9 +33,9 @@ export const authMiddleware = asyncHandler(async (req, res, next) => {
       res.status(401);
       throw new Error("Not authorized, token failed");
     }
-    if (!token) {
-      res.status(401);
-      throw new Error("Not authorized, no token");
-    }
+  }
+  if (!token) {
+    res.status(401);
+    throw new Error("Not authorized, no token");
   }
 });
