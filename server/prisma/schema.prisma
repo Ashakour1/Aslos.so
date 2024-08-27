@@ -28,6 +28,7 @@ model Product {
   id String @id @default(auto())@map("_id")@db.ObjectId
   name String
   description String
+  sex String
   category String
   price Float 
   stock Int
@@ -36,6 +37,7 @@ model Product {
   updatedAt DateTime @updatedAt
   Order Order[]
   OrderItem OrderItem[]
+  
 
 }
 
