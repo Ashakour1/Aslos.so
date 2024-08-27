@@ -59,6 +59,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     },
   });
 
+  // console.log(user);
   if (!user) {
     res.status(400);
     throw new Error("User not found");
@@ -81,12 +82,30 @@ export const loginUser = asyncHandler(async (req, res) => {
     { expiresIn: expiresIn }
   );
 
+  // console.log(token);
+
   res.status(200).json({
-    data: {
-      user: user,
-      token,
-      expiresIn,
-    },
+    user,
+    token,
+    expiresIn,
     message: "Login successfully",
+  });
+});
+
+export const getUser = asyncHandler(async (req, res) => {
+  console.log(req.user);
+  const user = await prisma.user.findUnique({
+    where: {
+      id: req.user.id,
+    },
+  });
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  res.status(200).json({
+    data: user,
   });
 });
