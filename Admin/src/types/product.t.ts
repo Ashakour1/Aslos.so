@@ -1,6 +1,7 @@
 export type formData = {
   name: string;
   description: string;
+  sex: string;
   category: string;
   price: Number;
   stock: Number;
@@ -11,6 +12,7 @@ export type Products = {
   id: string;
   name: string;
   description: string;
+  sex: string;
   category: string;
   price: Number;
   stock: Number;
