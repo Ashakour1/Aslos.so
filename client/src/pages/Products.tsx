@@ -4,7 +4,7 @@ import Product from "@/components/Products/product";
 import { ProductType } from "@/types/product.t";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Products = ({}) => {
   const { sex } = useParams();
