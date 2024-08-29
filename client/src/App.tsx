@@ -14,8 +14,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/shope/:sex" element={<Products />} />
-          <Route path="/shope/*" element={<NotFound />} />
+          <Route path="/shop/sex/:sex" element={<Products />} />
+          <Route path="/shop/cat/:category" element={<Products />} />
+          <Route path="/shop/coll/:collection" element={<Products />} />
+          <Route path="/shop/" element={<Products />} />
+          {/* <Route path="/shope/*" element={<NotFound />} /> */}
         </Routes>
       </Router>
     </>
