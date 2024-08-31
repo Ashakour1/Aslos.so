@@ -1,23 +1,15 @@
 import { ProductTable } from "@/components/ProductTable";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
-import { MoveHorizontalIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useUser } from "@/hooks/useUser";
+import { Link, useNavigate } from "react-router-dom";
 const ProductPage = () => {
+  const { user } = useUser();
+
+  const navigate = useNavigate();
+
+  if (!user) {
+    navigate("/");
+  }
   return (
     <div className="max-w-[1200px] mx-auto my-10">
       <div className="flex justify-between my-5 items-center">
