@@ -2,15 +2,15 @@ import { Category } from "@/types/category.t";
 
 export const Categories: Category[] = [
   {
-    name: "Run",
+    name: "run",
     image: "/landing-mobile.png",
   },
   {
-    name: "Recap",
+    name: "recap",
     image: "/landing-mobile.png",
   },
   {
-    name: "Train",
+    name: "train",
     image: "/landing-mobile.png",
   },
 ];
