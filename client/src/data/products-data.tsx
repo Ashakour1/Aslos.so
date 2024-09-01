@@ -8,6 +8,8 @@ export const products: ProductType[] = [
     category: "Run",
     price: 100,
     stock: 10,
+    size: ["S", "M", "L", "XL"],
+    color: ["Black", "White", "Blue"],
     image:
       "https://asrv.com/cdn/shop/files/BLACK_ASRV_EstablishedTee_c42f7fce-0293-4b1a-993d-c180b9ea2131_600x.jpg?v=1710701915",
   },
@@ -19,6 +21,8 @@ export const products: ProductType[] = [
     category: "Recap",
     price: 120,
     stock: 15,
+    size: ["S", "M", "L", "XL"],
+    color: ["Black", "White", "Blue"],
     image:
       "https://asrv.com/cdn/shop/products/ASRVE-Comm-425-Edit_600x.jpg?v=1673555835",
   },
@@ -30,6 +34,8 @@ export const products: ProductType[] = [
     category: "Train",
     price: 80,
     stock: 5,
+    size: ["S", "M", "L", "XL"],
+    color: ["Black", "White", "Blue"],
     image:
       "https://img.lazcdn.com/g/p/8c4ba43f51e014b168ef78746994ce79.jpg_960x960q80.jpg_.webp",
   },
@@ -41,6 +47,8 @@ export const products: ProductType[] = [
     category: "Run",
     price: 90,
     stock: 20,
+    size: ["S", "M", "L", "XL"],
+    color: ["Black", "White", "Blue"],
     image:
       "https://asrv.com/cdn/shop/products/ASRVE-Comm-425-Edit_600x.jpg?v=1673555835",
   },
