@@ -26,7 +26,9 @@ const Header = () => {
     <header className="bg-white shadow-md">
       <div className="max-w-[1140px] mx-auto px-4 py-2 flex md:justify-between items-center">
         <div className="logo flex-1 md:flex-none">
-          <img className="w-16" src="/logo-2.png" alt="logo" />
+          <Link to="/" className="text-2xl font-bold text-accent">
+            <img className="w-16" src="/logo-2.png" alt="logo" />
+          </Link>
         </div>
         <div className="">
           <NavigationMenu className="hidden md:flex flex-1 ">
