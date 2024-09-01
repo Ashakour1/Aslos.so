@@ -8,15 +8,18 @@ import cloudinary from "../config/cloudinary.js";
 export const getProducts = asyncHandler(async (req, res) => {
   const qNew = req.query.new;
 
-  const { sex, category } = req.query;
+  const { sex, category, collection } = req.query;
+  
+
+  // console.log(req.query);
 
   try {
     let products;
 
     if (qNew) {
-      products = (await prisma.product.findMany())
-        .sort({ createdAt: -1 })
-        .limit(10);
+      products = (await prisma.product.findMany()).sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
     } else if (category) {
       products = await prisma.product.findMany({
         where: {
@@ -27,6 +30,12 @@ export const getProducts = asyncHandler(async (req, res) => {
       products = await prisma.product.findMany({
         where: {
           sex,
+        },
+      });
+    } else if (collection) {
+      products = await prisma.product.findMany({
+        where: {
+          collection,
         },
       });
     } else {
@@ -64,14 +73,35 @@ export const getProductById = asyncHandler(async (req, res) => {
 
 export const createProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, sex, category, price, stock } = req.body;
+    const {
+      name,
+      description,
+      sex,
+      category,
+      price,
+      stock,
+      collection,
+      color,
+      size,
+    } = req.body;
 
-    // console.log(name, description, category, price, stock);
+    // console.log(req.body);
 
-    if (!name || !description || !sex || !category || !price || !stock) {
+    if (
+      !name ||
+      !description ||
+      !sex ||
+      !category ||
+      !price ||
+      !stock ||
+      !collection ||
+      !color ||
+      !size
+    ) {
       res.status(400);
       throw new Error("Please fill all the fields");
     }
+
     const productExists = await prisma.product.findFirst({
       where: {
         name: name,
@@ -104,6 +134,9 @@ export const createProduct = asyncHandler(async (req, res) => {
         category,
         price: parseFloat(price),
         stock: parseInt(stock),
+        collection,
+        color: [JSON.parse(color)],
+        size: [JSON.parse(size)],
         image: result?.url || null,
       },
     });
@@ -123,9 +156,19 @@ export const createProduct = asyncHandler(async (req, res) => {
 // access private/admin
 export const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { name, description, sex, category, price, stock } = req.body;
+  const { name, description, sex, category, price, stock, size, color } =
+    req.body;
 
-  if (!name || !description || !sex || !category || !price || !stock) {
+  if (
+    !name ||
+    !description ||
+    !sex ||
+    !category ||
+    !price ||
+    !stock ||
+    !size ||
+    !color
+  ) {
     res.status(400);
     throw new Error("Please fill all the fields");
   }
@@ -155,6 +198,11 @@ export const updateProduct = asyncHandler(async (req, res) => {
     imageUrl = result.url; // Update the image URL if a new image is uploaded
   }
 
+  // if (!Array.isArray(color) || !Array.isArray(size)) {
+  //   res.status(400);
+  //   throw new Error("Color and size should be arrays");
+  // }
+
   // Update the product with the new data
   const updatedProduct = await prisma.product.update({
     where: { id },
@@ -165,6 +213,8 @@ export const updateProduct = asyncHandler(async (req, res) => {
       category,
       price: parseFloat(price),
       stock: parseInt(stock),
+      color: JSON.parse(color),
+      size: JSON.parse(size),
       image: imageUrl, // Use the existing or new image URL
     },
   });
