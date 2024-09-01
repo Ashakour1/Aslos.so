@@ -5,6 +5,8 @@ export type ProductType = {
   category: string;
   price: number;
   stock: number;
+  color: string[];
+  size: string[];
   image: string;
   createdAt?: string;
   updatedAt?: string;
