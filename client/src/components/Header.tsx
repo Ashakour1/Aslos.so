@@ -6,7 +6,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 import { useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
@@ -17,8 +17,10 @@ const Header = () => {
     setOpenNav(!openNav);
   };
 
-  const handleNavClick = (path : any) => {
-    window.location.href = path; // This triggers a full page reload
+  const navigate = useNavigate();
+
+  const handleNavClick = (path: string) => {
+    navigate(path); // This triggers a client-side navigation without a full page reload
   };
   return (
     <header className="bg-white shadow-md">
@@ -40,9 +42,9 @@ const Header = () => {
                     </h1>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="/shope/male"
+                        to="/shop/sex/male"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        onClick={() => handleNavClick("/shope/male")}
+                        onClick={() => handleNavClick("/shop/sex/male")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           MALE
@@ -51,9 +53,9 @@ const Header = () => {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="/shope/female"
+                        to="/shop/sex/female"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        onClick={() => handleNavClick("/shope/female")}
+                        onClick={() => handleNavClick("/shop/sex/female")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           FEMALE
@@ -74,8 +76,9 @@ const Header = () => {
                     </h1>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="#"
+                        to="/shop/coll/spring"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        onClick={() => handleNavClick("/shop/coll/spring")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           SPRING
@@ -84,8 +87,9 @@ const Header = () => {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="#"
+                        to="/shop/coll/summer"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        onClick={() => handleNavClick("/shop/coll/summer")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           SUMMER
