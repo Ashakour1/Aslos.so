@@ -4,10 +4,12 @@ import Product from "@/components/Products/product";
 import { ProductType } from "@/types/product.t";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Products = ({}) => {
-  const { sex } = useParams();
+  const { sex, category, collection } = useParams();
+
+  console.log(sex, category, collection);
 
   const [loading, setLoading] = useState(false);
 
@@ -16,11 +18,16 @@ const Products = ({}) => {
   const fetchingProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/products/", {
-        params: {
-          sex,
-        },
-      });
+      const response = await axios.get(
+        sex || category  ? `/api/products` : `/api/products`,
+        {
+          params: {
+            ...(sex && { sex }),
+            ...(category && { category }),
+            ...(collection && { collection }),
+          },
+        }
+      );
       setProducts(response.data);
       console.log(response);
     } catch (error) {
@@ -31,7 +38,7 @@ const Products = ({}) => {
 
   useEffect(() => {
     fetchingProducts();
-  }, [sex]);
+  }, [sex, category, collection]);
 
   return (
     <>
@@ -48,7 +55,19 @@ const Products = ({}) => {
           <div>
             <div className="flex items-center justify-between ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-2xl font-semibold">{sex?.toUpperCase()}</h1>
+                <p className="font-medium text-sm">
+                  Back to the{" "}
+                  <Link to="/" className="text-blue-500">
+                    home
+                  </Link>
+                </p>
+                <h1 className="text-2xl font-semibold">
+                  {sex
+                    ? sex.toUpperCase()
+                    : category?.toUpperCase() ||
+                      collection?.toUpperCase() ||
+                      "SHOP ALL PRODUCTS"}
+                </h1>
                 <p className="font-medium text-sm">SHOP ALL PRODUCTS</p>
               </div>
             </div>
