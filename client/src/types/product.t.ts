@@ -1,4 +1,5 @@
 export type ProductType = {
+  id: string | null
   name: string;
   description: string;
   sex: string;

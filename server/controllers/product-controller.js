@@ -9,7 +9,6 @@ export const getProducts = asyncHandler(async (req, res) => {
   const qNew = req.query.new;
 
   const { sex, category, collection } = req.query;
-  
 
   // console.log(req.query);
 
@@ -135,8 +134,8 @@ export const createProduct = asyncHandler(async (req, res) => {
         price: parseFloat(price),
         stock: parseInt(stock),
         collection,
-        color: [JSON.parse(color)],
-        size: [JSON.parse(size)],
+        color: [],
+        size: [],
         image: result?.url || null,
       },
     });
