@@ -5,6 +5,9 @@ import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
+import OurPhilosophy from "./pages/About/OurPhilosophy";
+import DesignPrinciples from "./pages/About/DesignPrinciples";
+// import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
   return (
@@ -18,7 +21,12 @@ function App() {
           <Route path="/shop/cat/:category" element={<Products />} />
           <Route path="/shop/coll/:collection" element={<Products />} />
           <Route path="/shop/" element={<Products />} />
+          {/* <Route path="/shop/:id" element={<ProductDetail />} /> */}
           <Route path="/shop/*" element={<NotFound />} />
+          <Route path="/about/our-philosophy" element={<OurPhilosophy />} />
+          <Route path="/about/design-principles" element={<DesignPrinciples />} />
+          <Route path="/about/*" element={<NotFound />} />
+
         </Routes>
       </Router>
     </>
