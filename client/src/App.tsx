@@ -1,9 +1,10 @@
 import "./App.css";
 // import Header from "./components/Header";
+import LandingPage from "./components/under-construction";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import NotFound from "./components/NotFound";
-import HomePage from "./pages/HomePage";
+// import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
 import OurPhilosophy from "./pages/About/OurPhilosophy";
 import DesignPrinciples from "./pages/About/DesignPrinciples";
@@ -13,9 +14,9 @@ function App() {
   return (
     <>
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/shop/sex/:sex" element={<Products />} />
           <Route path="/shop/cat/:category" element={<Products />} />
@@ -24,9 +25,11 @@ function App() {
           {/* <Route path="/shop/:id" element={<ProductDetail />} /> */}
           <Route path="/shop/*" element={<NotFound />} />
           <Route path="/about/our-philosophy" element={<OurPhilosophy />} />
-          <Route path="/about/design-principles" element={<DesignPrinciples />} />
+          <Route
+            path="/about/design-principles"
+            element={<DesignPrinciples />}
+          />
           <Route path="/about/*" element={<NotFound />} />
-
         </Routes>
       </Router>
     </>
