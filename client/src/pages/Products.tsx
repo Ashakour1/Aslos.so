@@ -1,10 +1,11 @@
 // import React from "react";
 // import { type ProductType } from "@/types/product.t";
-import Product from "@/components/Products/product";
+import Product from "@/components/Products/Product";
 import { ProductType } from "@/types/product.t";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { TbArrowBackUpDouble } from "react-icons/tb";
 
 const Products = ({}) => {
   const { sex, category, collection } = useParams();
@@ -19,7 +20,7 @@ const Products = ({}) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        sex || category  ? `/api/products` : `/api/products`,
+        sex || category ? `/api/products` : `/api/products`,
         {
           params: {
             ...(sex && { sex }),
@@ -56,9 +57,12 @@ const Products = ({}) => {
             <div className="flex items-center justify-between ">
               <div className="flex flex-col gap-2">
                 <p className="font-medium text-sm">
-                  Back to the{" "}
-                  <Link to="/" className="text-blue-500">
-                    home
+                  <Link
+                    to="/"
+                    className="text-gray-500 flex gap-1 items-center"
+                  >
+                    <TbArrowBackUpDouble className="text-xl" />
+                    Home
                   </Link>
                 </p>
                 <h1 className="text-2xl font-semibold">
@@ -68,7 +72,7 @@ const Products = ({}) => {
                       collection?.toUpperCase() ||
                       "SHOP ALL PRODUCTS"}
                 </h1>
-                <p className="font-medium text-sm">SHOP ALL PRODUCTS</p>
+                <p className="font-medium text-sm text-gray-700">SHOP ALL PRODUCTS</p>
               </div>
             </div>
 
