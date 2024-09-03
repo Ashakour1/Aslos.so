@@ -112,8 +112,9 @@ const Header = () => {
                     </h1>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="#"
+                        to="/about/our-philosophy"
                         className="group grid h-auto w-full items-start justify-start x rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        onClick={() => handleNavClick("/about/our-philosophy")}
                       >
                         <div className="text-sm font-medium leading-none ">
                           OUR PHILOSOPHY
@@ -122,7 +123,7 @@ const Header = () => {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        to="#"
+                        to="/about/design-principles"
                         className="group grid h-auto w-full items-start justify-start  rounded-md bg-background pl-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                       >
                         <div className="text-sm font-medium leading-none group-hover:underline">
