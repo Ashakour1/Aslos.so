@@ -100,12 +100,16 @@ export const ProductTable = () => {
                   <TableCell className="hidden sm:table-cell">
                     {product.collection}
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {product.color.join(", ")}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {product.size.join(", ")}
-                  </TableCell>
+                  {product.color.map((color) => (
+                    <TableCell className="hidden sm:table-cell">
+                      {color}
+                    </TableCell>
+                  ))}
+                  {product.size.map((size) => (
+                    <TableCell className="hidden sm:table-cell">
+                      {size}
+                    </TableCell>
+                  ))}
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
