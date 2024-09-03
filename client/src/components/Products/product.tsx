@@ -1,4 +1,5 @@
 import { type ProductType } from "@/types/product.t";
+import { Link } from "react-router-dom";
 
 type ProductProps = {
   product: ProductType;
@@ -6,17 +7,25 @@ type ProductProps = {
 
 const Product = ({ product }: ProductProps) => {
   return (
-    <div className="flex flex-col bg-white shadow-sm overflow-hidden">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-72 object-cover"
-      />
-      <div className="p-4 flex flex-col gap-2">
-        <h1 className="text-lg font-semibold">{product.name}</h1>
-        <p className="text-gray-600 text-sm">{product.price}</p>
+    <Link to={`/shop/${product.id}`}>
+
+    
+<div className="group block overflow-hidden">
+        <img
+          src={product.image}
+          alt="Product Image"
+          className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
+        />
+
+        <div className="relative bg-white pt-3">
+          <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+            {product.name}
+          </h3>
+
+          <p className="mt-2 tracking-wider text-gray-900">£{product.price}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
