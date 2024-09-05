@@ -124,6 +124,8 @@ export const createProduct = asyncHandler(async (req, res) => {
         transformation: [{ width: 500, height: 500, crop: "limit" }],
       });
     }
+    const parsedColor = Array.isArray(color) ? color : JSON.parse(color);
+    const parsedSize = Array.isArray(size) ? size : JSON.parse(size);
 
     const product = await prisma.product.create({
       data: {
@@ -134,8 +136,8 @@ export const createProduct = asyncHandler(async (req, res) => {
         price: parseFloat(price),
         stock: parseInt(stock),
         collection,
-        color: [],
-        size: [],
+        color: parsedColor,
+        size: parsedSize,
         image: result?.url || null,
       },
     });
@@ -155,8 +157,17 @@ export const createProduct = asyncHandler(async (req, res) => {
 // access private/admin
 export const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { name, description, sex, category, price, stock, size, color } =
-    req.body;
+  const {
+    name,
+    description,
+    sex,
+    category,
+    price,
+    stock,
+    collection,
+    size,
+    color,
+  } = req.body;
 
   if (
     !name ||
@@ -165,6 +176,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
     !category ||
     !price ||
     !stock ||
+    !collection ||
     !size ||
     !color
   ) {
@@ -197,10 +209,8 @@ export const updateProduct = asyncHandler(async (req, res) => {
     imageUrl = result.url; // Update the image URL if a new image is uploaded
   }
 
-  // if (!Array.isArray(color) || !Array.isArray(size)) {
-  //   res.status(400);
-  //   throw new Error("Color and size should be arrays");
-  // }
+  const parsedColor = Array.isArray(color) ? color : JSON.parse(color);
+  const parsedSize = Array.isArray(size) ? size : JSON.parse(size);
 
   // Update the product with the new data
   const updatedProduct = await prisma.product.update({
@@ -212,8 +222,9 @@ export const updateProduct = asyncHandler(async (req, res) => {
       category,
       price: parseFloat(price),
       stock: parseInt(stock),
-      color: JSON.parse(color),
-      size: JSON.parse(size),
+      collection,
+      color: parsedColor,
+      size: parsedSize,
       image: imageUrl, // Use the existing or new image URL
     },
   });
