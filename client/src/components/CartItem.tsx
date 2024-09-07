@@ -2,15 +2,13 @@ import { useCart } from "@/features/useCart";
 import { useState } from "react";
 
 const CartItem = ({ product }: { product: any }) => {
-  const { RemoveCart, totalPrice, totalItems, UpdateQuantity } = useCart(
-    (state) => ({
-      products: state.products,
-      RemoveCart: state.RemoveCart,
-      totalPrice: state.totalPrice,
-      totalItems: state.totalItems,
-      UpdateQuantity: state.UpdateQuantity,
-    })
-  );
+  const { RemoveCart, UpdateQuantity } = useCart((state) => ({
+    products: state.products,
+    RemoveCart: state.RemoveCart,
+    // totalPrice: state.totalPrice,
+    // totalItems: state.totalItems,
+    UpdateQuantity: state.UpdateQuantity,
+  }));
 
   const [quantity, setQuantity] = useState(product.quantity);
 
