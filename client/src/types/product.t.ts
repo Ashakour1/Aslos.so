@@ -12,9 +12,3 @@ export type ProductType = {
   createdAt?: string;
   updatedAt?: string;
 };
-
-export type CartItem = Omit<ProductType, "color" | "size"> & {
-  selectedColor: string;
-  selectedSize: string;
-  quantity: number;
-};
