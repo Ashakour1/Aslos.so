@@ -1,6 +1,6 @@
 // import React from "react";
 // import { type ProductType } from "@/types/product.t";
-import Product from "@/components/Products/Product";
+import Product from "../components/Products/Product";
 import { ProductType } from "@/types/product.t";
 import axios from "axios";
 import { useEffect, useState } from "react";
