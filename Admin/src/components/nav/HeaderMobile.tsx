@@ -1,5 +1,5 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Package2 } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { routes } from "./Header";

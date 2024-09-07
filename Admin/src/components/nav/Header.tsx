@@ -6,10 +6,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { CircleUser, Menu, Package2, Search } from "lucide-react";
-import { useState } from "react";
+// import { Input } from "@/components/ui/input";
+// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { CircleUser } from "lucide-react";
+// import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import HeaderMobile from "./HeaderMobile";
@@ -53,7 +53,7 @@ const Header = () => {
   //   setNavIsOpen(false);
   // };
 
-  const {logout } = useUser();
+  const { logout } = useUser();
 
   return (
     <div>
@@ -88,7 +88,7 @@ const Header = () => {
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={logout} >Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
