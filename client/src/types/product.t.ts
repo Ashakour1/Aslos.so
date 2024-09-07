@@ -1,5 +1,5 @@
 export type ProductType = {
-  id: string | null
+  id: string | null;
   name: string;
   description: string;
   sex: string;
@@ -11,4 +11,10 @@ export type ProductType = {
   image: string;
   createdAt?: string;
   updatedAt?: string;
+};
+
+export type CartItem = Omit<ProductType, "color" | "size"> & {
+  selectedColor: string;
+  selectedSize: string;
+  quantity: number;
 };
