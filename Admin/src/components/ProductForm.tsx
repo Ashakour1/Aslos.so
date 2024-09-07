@@ -15,8 +15,8 @@ const ProductForm = () => {
     price: 0,
     stock: 0,
     collection: "",
-    color: "",
-    size: "",
+    color: [],
+    size: [],
     image: "",
   });
 
@@ -40,7 +40,16 @@ const ProductForm = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "color" || name === "size") {
+      // Convert comma-separated string to array
+      setFormData({
+        ...formData,
+        [name]: value.split(",").map((item) => item.trim()),
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // const productData = {
@@ -247,7 +256,7 @@ const ProductForm = () => {
             placeholder="Enter the available colors (separated by commas)"
             type="text"
             name="color"
-            value={formData.color}
+            value={formData.color.join(" ,")}
             onChange={handleChange}
           />
         </div>
@@ -265,7 +274,7 @@ const ProductForm = () => {
             placeholder="Enter the available sizes (separated by commas)"
             type="text"
             name="size"
-            value={formData.size}
+            value={formData.size.join(" ,")}
             onChange={handleChange}
           />
         </div>
