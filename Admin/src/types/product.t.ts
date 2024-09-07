@@ -6,8 +6,8 @@ export type productData = {
   price: Number;
   stock: Number;
   collection: string;
-  color: string;
-  size: string;
+  color: [];
+  size: [];
   image: File | string;
 };
 
