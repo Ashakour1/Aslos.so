@@ -3,15 +3,12 @@ import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 
 const CartItems = () => {
-  const { products, totalItems, totalPrice, tax, totalPriceWithTax } = useCart(
-    (state) => ({
-      products: state.products,
-      totalItems: state.totalItems,
-      totalPrice: state.totalPrice,
-      tax: state.tax,
-      totalPriceWithTax: state.totalPriceWithTax,
-    })
-  );
+  const { products, totalPrice, tax, totalPriceWithTax } = useCart((state) => ({
+    products: state.products,
+    totalPrice: state.totalPrice,
+    tax: state.tax,
+    totalPriceWithTax: state.totalPriceWithTax,
+  }));
 
   console.log(tax);
   return (
