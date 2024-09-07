@@ -1,5 +1,5 @@
 // import { products } from "@/data/products-data";
-import Product from "@/components/Products/Product";
+import Product from "./Product";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ProductType } from "@/types/product.t";
