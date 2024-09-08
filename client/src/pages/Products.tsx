@@ -1,5 +1,3 @@
-// import React from "react";
-// import { type ProductType } from "@/types/product.t";
 import Product from "../components/Products/Product";
 import { ProductType } from "@/types/product.t";
 import axios from "axios";
@@ -72,7 +70,9 @@ const Products = ({}) => {
                       collection?.toUpperCase() ||
                       "SHOP ALL PRODUCTS"}
                 </h1>
-                <p className="font-medium text-sm text-gray-700">SHOP ALL PRODUCTS</p>
+                <p className="font-medium text-sm text-gray-700">
+                  SHOP ALL PRODUCTS
+                </p>
               </div>
             </div>
 
