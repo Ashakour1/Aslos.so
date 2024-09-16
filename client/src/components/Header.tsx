@@ -138,7 +138,9 @@ const Header = () => {
           </NavigationMenu>
         </div>
         <div className="flex-2 md:flex pr-2">
-          <CiShoppingCart className="text-3xl" />
+          <Link to="/cart">
+            <CiShoppingCart className="text-3xl" />
+          </Link>
         </div>
         {/* mobile */}
         <div onClick={OpenNavbar} className="md:hidden block ">

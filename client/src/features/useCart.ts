@@ -15,15 +15,15 @@ type CartStore = {
   products: ProductCart[];
   totalPrice: number;
   totalItems: number;
-  UpdateQuantity: (id: string, quantity: number) => void;
-
   totalPriceWithTax: number;
   tax: number;
   AddCart: (product: ProductCart) => void;
   RemoveCart: (id: string) => void;
+  IncrementQuantity: (id: string) => void;
+  DecrementQuantity: (id: string) => void;
 };
 
-export const useCart = create<CartStore>((set, get)  => ({
+export const useCart = create<CartStore>((set, get) => ({
   products: [],
   totalPriceWithTax: 0,
   totalPrice: 0,
@@ -32,6 +32,7 @@ export const useCart = create<CartStore>((set, get)  => ({
   AddCart: (product) => {
     const { products } = get();
 
+    // Create a new array with the existing products and the new product
     const existingItemIndex = products.find(
       (item) =>
         item.id === product.id &&
@@ -39,22 +40,26 @@ export const useCart = create<CartStore>((set, get)  => ({
         item.selectedSize === product.selectedSize
     );
 
+    // Remove the existing product from the array
     if (existingItemIndex) {
       const updatedProducts = products.map((item) =>
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
 
+      // Calculate the total price of the products in the cart
       const updatedTotalPrice = updatedProducts.reduce(
         (acc, item) => acc + item.price * item.quantity,
         0
       );
 
+      // Calculate the total number of items in the cart
       const updatedTotalItems = updatedProducts.reduce(
         (acc, item) => acc + item.quantity,
         0
       );
 
-      const updatedTax = updatedTotalPrice * 0.005; // 0.5% tax
+      // Calculate the total tax
+      const updatedTax = updatedTotalPrice * 0.05; // 0.5% tax
       const finalTotalPrice = updatedTotalPrice + updatedTax;
 
       set({
@@ -77,7 +82,7 @@ export const useCart = create<CartStore>((set, get)  => ({
         0
       );
 
-      const updatedTax = updatedTotalPrice * 0.005; // 0.5% tax
+      const updatedTax = updatedTotalPrice * 0.05; // 0.5% tax
       const finalTotalPrice = updatedTotalPrice + updatedTax;
 
       set({
@@ -90,7 +95,7 @@ export const useCart = create<CartStore>((set, get)  => ({
     }
   },
   RemoveCart: (id) => {
-    const { products } = get();
+    const { products, tax } = get();
 
     const updatedProducts = products.filter((item) => item.id !== id);
 
@@ -104,7 +109,7 @@ export const useCart = create<CartStore>((set, get)  => ({
       0
     );
 
-    const updatedTax = updatedTotalPrice * 0.005; // 0.5% tax
+    const updatedTax = (updatedTotalPrice * tax) / 100; // 0.5% tax
 
     const finalTotalPrice = updatedTotalPrice + updatedTax;
 
@@ -116,31 +121,61 @@ export const useCart = create<CartStore>((set, get)  => ({
       tax: updatedTax,
     });
   },
-  UpdateQuantity: (id, quantity) => {
-    const { products } = get();
+  IncrementQuantity: (id) => {
+    const { products, tax } = get();
 
-    const updatedProducts = products.map((product) =>
-      product.id === id
-        ? { ...product, quantity: Math.max(quantity, 1) } // Ensure quantity is at least 1
-        : product
+    const updatedProducts = products.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
 
     const updatedTotalPrice = updatedProducts.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
+
     const updatedTotalItems = updatedProducts.reduce(
       (acc, item) => acc + item.quantity,
       0
     );
-    const updatedTax = updatedTotalPrice * 0.005; // 0.5% tax
+
+    const updatedTax = updatedTotalPrice * 0.05; // 0.5% tax
+
     const finalTotalPrice = updatedTotalPrice + updatedTax;
 
     set({
       products: updatedProducts,
+      totalPriceWithTax: finalTotalPrice,
       totalPrice: updatedTotalPrice,
       totalItems: updatedTotalItems,
+      tax: updatedTax,
+    });
+  },
+  DecrementQuantity: (id) => {
+    const { products, tax } = get();
+
+    const updatedProducts = products.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+    );
+
+    const updatedTotalPrice = updatedProducts.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+
+    const updatedTotalItems = updatedProducts.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+
+    const updatedTax = updatedTotalPrice * 0.05; // 0.5% tax
+
+    const finalTotalPrice = updatedTotalPrice + updatedTax;
+
+    set({
+      products: updatedProducts,
       totalPriceWithTax: finalTotalPrice,
+      totalPrice: updatedTotalPrice,
+      totalItems: updatedTotalItems,
       tax: updatedTax,
     });
   },

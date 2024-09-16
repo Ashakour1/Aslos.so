@@ -2,13 +2,17 @@ import { useCart } from "@/features/useCart";
 import { useState } from "react";
 
 const CartItem = ({ product }: { product: any }) => {
-  const { RemoveCart, UpdateQuantity } = useCart((state) => ({
-    products: state.products,
-    RemoveCart: state.RemoveCart,
-    // totalPrice: state.totalPrice,
-    // totalItems: state.totalItems,
-    UpdateQuantity: state.UpdateQuantity,
-  }));
+  const { RemoveCart, IncrementQuantity, DecrementQuantity } = useCart(
+    (state) => ({
+      products: state.products,
+      RemoveCart: state.RemoveCart,
+      // totalPrice: state.totalPrice,
+      // totalItems: state.totalItems,
+      // UpdateQuantity: state.UpdateQuantity,
+      IncrementQuantity: state.IncrementQuantity,
+      DecrementQuantity: state.DecrementQuantity,
+    })
+  );
 
   const [quantity, setQuantity] = useState(product.quantity);
 
@@ -19,7 +23,7 @@ const CartItem = ({ product }: { product: any }) => {
   const handleIncrement = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    UpdateQuantity(product.id, newQuantity);
+    IncrementQuantity(product.id);
   };
 
   const handleDecrement = (id: any) => {
@@ -28,7 +32,7 @@ const CartItem = ({ product }: { product: any }) => {
     } else {
       const newQuantity = quantity - 1;
       setQuantity(newQuantity);
-      UpdateQuantity(product.id, newQuantity);
+      DecrementQuantity(product.id);
     }
   };
 

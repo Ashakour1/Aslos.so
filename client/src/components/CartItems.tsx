@@ -1,6 +1,6 @@
 import { useCart } from "@/features/useCart";
 import CartItem from "./CartItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartItems = () => {
   const { products, totalPrice, tax, totalPriceWithTax } = useCart((state) => ({
@@ -10,7 +10,11 @@ const CartItems = () => {
     totalPriceWithTax: state.totalPriceWithTax,
   }));
 
-  console.log(tax);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/check");
+  };
   return (
     <section>
       {products.length === 0 ? (
@@ -52,7 +56,7 @@ const CartItems = () => {
 
                   <div className="flex justify-between">
                     <dt>VAT(Canshuur) </dt>
-                    <dd>${tax}</dd>
+                    <dd>${tax.toFixed(2)}</dd>
                   </div>
                   {/* 
                 <div className="flex justify-between">
@@ -93,6 +97,7 @@ const CartItems = () => {
                   <a
                     href="#"
                     className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                    onClick={handleCheckout}
                   >
                     Checkout
                   </a>
