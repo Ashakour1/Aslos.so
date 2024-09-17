@@ -95,7 +95,7 @@ export const useCart = create<CartStore>((set, get) => ({
     }
   },
   RemoveCart: (id) => {
-    const { products, tax } = get();
+    const { products } = get();
 
     const updatedProducts = products.filter((item) => item.id !== id);
 
@@ -109,7 +109,7 @@ export const useCart = create<CartStore>((set, get) => ({
       0
     );
 
-    const updatedTax = (updatedTotalPrice * tax) / 100; // 0.5% tax
+    const updatedTax = updatedTotalPrice * 0.05; // 0.5% tax
 
     const finalTotalPrice = updatedTotalPrice + updatedTax;
 
@@ -122,7 +122,7 @@ export const useCart = create<CartStore>((set, get) => ({
     });
   },
   IncrementQuantity: (id) => {
-    const { products, tax } = get();
+    const { products } = get();
 
     const updatedProducts = products.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -151,7 +151,7 @@ export const useCart = create<CartStore>((set, get) => ({
     });
   },
   DecrementQuantity: (id) => {
-    const { products, tax } = get();
+    const { products } = get();
 
     const updatedProducts = products.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity - 1 } : item
