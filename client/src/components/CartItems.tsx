@@ -3,11 +3,9 @@ import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
 
 const CartItems = () => {
-  const { products, totalPrice, tax, totalPriceWithTax } = useCart((state) => ({
+  const { products, totalPrice } = useCart((state) => ({
     products: state.products,
     totalPrice: state.totalPrice,
-    tax: state.tax,
-    totalPriceWithTax: state.totalPriceWithTax,
   }));
 
   const navigate = useNavigate();
@@ -49,15 +47,6 @@ const CartItems = () => {
             <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
               <div className="w-screen max-w-lg space-y-4">
                 <dl className="space-y-0.5 text-sm text-gray-700">
-                  <div className="flex justify-between">
-                    <dt>Subtotal</dt>
-                    <dd>${totalPrice}</dd>
-                  </div>
-
-                  <div className="flex justify-between">
-                    <dt>VAT(Canshuur) </dt>
-                    <dd>${tax.toFixed(2)}</dd>
-                  </div>
                   {/* 
                 <div className="flex justify-between">
                   <dt>Discount</dt>
@@ -66,7 +55,7 @@ const CartItems = () => {
 
                   <div className="flex justify-between !text-base font-medium">
                     <dt>Total</dt>
-                    <dd>${totalPriceWithTax}</dd>
+                    <dd>${totalPrice}</dd>
                   </div>
                 </dl>
 
