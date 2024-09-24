@@ -1,15 +1,15 @@
 import { useCart } from "@/features/useCart";
-import { useState } from "react";
+// import { useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 const Checkout = () => {
-  const [shippingDetails, setShippingDetails] = useState({
-    email: "",
-    phone: "",
-    name: "",
-    address: "",
-  });
+  // const [shippingDetails, setShippingDetails] = useState({
+  //   email: "",
+  //   phone: "",
+  //   name: "",
+  //   address: "",
+  // });
 
   const { products, totalPrice, tax, totalPriceWithTax, RemoveCart } = useCart(
     (state) => ({
