@@ -1,8 +1,16 @@
 import { useCart } from "@/features/useCart";
+import { useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 const Checkout = () => {
+  const [shippingDetails, setShippingDetails] = useState({
+    email: "",
+    phone: "",
+    name: "",
+    address: "",
+  });
+
   const { products, totalPrice, tax, totalPriceWithTax, RemoveCart } = useCart(
     (state) => ({
       products: state.products,
@@ -15,6 +23,13 @@ const Checkout = () => {
 
   const handleDelete = (id: any) => {
     RemoveCart(id);
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    try {
+    } catch (error) {}
   };
   return (
     <main className="max-w-[1080px] mx-auto md:px-4 lg:px-0 px-4 py-16">
@@ -38,7 +53,7 @@ const Checkout = () => {
             <div className="w-[400px]">
               <p className="text-lg py-2 font-medium">INFORMATION</p>
               <h3 className="text-base font-medium">CONTACT INFO</h3>
-              <form action="">
+              <form action="" onSubmit={handleSubmit}>
                 <div className="py-2">
                   <input
                     type="text"
@@ -69,7 +84,10 @@ const Checkout = () => {
                     className="border-gray-400 w-full  border py-2 px-4"
                   />
                 </div>
-                <button className="px-4 w-full py-2 mt-2 bg-gray-500 ">
+                <button
+                  type="submit"
+                  className="px-4 w-full py-2 mt-2 bg-black text-white "
+                >
                   Order By Whatsapp
                 </button>
               </form>
@@ -81,7 +99,7 @@ const Checkout = () => {
                 <p>2</p>
               </div>
               {products.map((product) => (
-                <div className="py-2 flex gap-2 w-full">
+                <div className="pb-2 pt-5 flex gap-2 w-full">
                   <img src={product.image} className="w-20 h-20" alt="" />
                   <div className="w-full flex flex-col">
                     <div className="w-full flex  justify-between">
