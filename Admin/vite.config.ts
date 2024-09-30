@@ -9,6 +9,8 @@ export default defineConfig({
     proxy: {
       "/api/products": "http://localhost:3000",
       "/api/auth": "http://localhost:3000",
+      "/api/orders": "http://localhost:3000",
+      
     },
   },
   resolve: {
