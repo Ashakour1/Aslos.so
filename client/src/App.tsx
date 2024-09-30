@@ -11,11 +11,12 @@ import OurPhilosophy from "./pages/About/OurPhilosophy";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
 import Checkout from "./components/Checkout";
-
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
       <Router>
+        <Toaster />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
