@@ -1,4 +1,5 @@
 import { useCart } from "@/features/useCart";
+import { useCheckout } from "@/features/useCheckout";
 import { useState } from "react";
 
 const CartItem = ({ product }: { product: any }) => {
@@ -14,10 +15,15 @@ const CartItem = ({ product }: { product: any }) => {
     })
   );
 
+  const { changeStageToInformation } = useCheckout((state) => ({
+    changeStageToInformation: state.changeStageToInformation,
+  }));
+
   const [quantity, setQuantity] = useState(product.quantity);
 
   const handleDelete = (id: any) => {
     RemoveCart(id);
+    changeStageToInformation();
   };
 
   const handleIncrement = () => {
