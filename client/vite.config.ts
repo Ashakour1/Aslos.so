@@ -8,6 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/products": "http://localhost:3000",
+      "/api/orders": "http://localhost:3000",
     },
   },
   resolve: {
