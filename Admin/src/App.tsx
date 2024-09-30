@@ -9,6 +9,7 @@ import ProductPage from "./pages/ProductPage.tsx";
 import { PropsWithChildren } from "react";
 import Dashboard from "./pages/Dashboard.tsx";
 import OrdersPage from "./pages/OrdersPage.tsx";
+import OrderForm from "./components/OrderForm.tsx";
 
 const MainLayout = ({ children }: PropsWithChildren<{}>) => {
   return (
@@ -32,6 +33,22 @@ function App() {
             element={
               <MainLayout>
                 <ProductFormPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/dashboard/product/update/:id"
+            element={
+              <MainLayout>
+                <ProductFormPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/dashboard/orders/update/:id"
+            element={
+              <MainLayout>
+                <OrderForm />
               </MainLayout>
             }
           />
