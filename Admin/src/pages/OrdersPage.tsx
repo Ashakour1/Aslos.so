@@ -1,3 +1,4 @@
+import { OrderTable } from "@/components/OrdersTable";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -17,6 +18,7 @@ const OrdersPage = () => {
           </Link>
         </div>
       </div>
+      <OrderTable />
     </main>
   );
 };
