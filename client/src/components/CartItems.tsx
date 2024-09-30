@@ -1,6 +1,7 @@
 import { useCart } from "@/features/useCart";
 import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
+import { useCheckout } from "@/features/useCheckout";
 
 const CartItems = () => {
   const { products, totalPrice } = useCart((state) => ({
@@ -8,9 +9,12 @@ const CartItems = () => {
     totalPrice: state.totalPrice,
   }));
 
+  const { changeStageToInformation } = useCheckout(); // Get stage and change functions from the checkout store
+
   const navigate = useNavigate();
 
   const handleCheckout = () => {
+    changeStageToInformation(); // Change the stage to information
     navigate("/check");
   };
   return (
@@ -84,7 +88,6 @@ const CartItems = () => {
 
                 <div className="flex justify-end">
                   <a
-                    href="#"
                     className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                     onClick={handleCheckout}
                   >
