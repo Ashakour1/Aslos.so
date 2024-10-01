@@ -43,7 +43,7 @@ export const createOrder = asyncHandler(async (req, res) => {
   try {
     const order = await prisma.order.create({
       data: {
-        total,
+        total: parseFloat(total),
         paymentMethod,
         paymentNumber,
         orderItem: {
@@ -122,7 +122,7 @@ export const updateOrder = asyncHandler(async (req, res) => {
     const updatedOrder = await prisma.order.update({
       where: { id },
       data: {
-        total,
+        total: parseFloat(total),
         status,
         paymentMethod,
         paymentNumber,
