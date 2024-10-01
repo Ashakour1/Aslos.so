@@ -16,24 +16,29 @@ import {
 import { Products } from "@/types/product.t";
 import axios from "axios";
 import { MoveHorizontalIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 export const ProductTable = () => {
   const [products, setProducts] = useState<Products[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get("/api/products/");
       setProducts(data);
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
-  fetchProducts();
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const handleDelete = async (id: string) => {
     try {
@@ -52,7 +57,15 @@ export const ProductTable = () => {
 
   return (
     <>
-      {products?.length > 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center h-96">
+          <h1 className="text-xl ">Loading...</h1>
+        </div>
+      ) : products?.length === 0 ? (
+        <div className="flex items-center justify-center h-96">
+          <h1 className="text-xl font-semibold">No Products Found</h1>
+        </div>
+      ) : (
         <div className="border shadow-sm rounded-lg p-2">
           <Table>
             <TableHeader>
@@ -136,8 +149,6 @@ export const ProductTable = () => {
             </TableBody>
           </Table>
         </div>
-      ) : (
-        <p className="text-gray-600 text-center">No products found</p>
       )}
     </>
   );
