@@ -46,8 +46,10 @@ interface Product {
 export const OrderTable = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [products, setProducts] = useState<Product[]>([]); // State for products
+  const [loading, setLoading] = useState(false);
 
   const fetchOrdersAndProducts = async () => {
+    setLoading(true);
     try {
       const [ordersResponse, productsResponse] = await Promise.all([
         axios.get("/api/orders/"),
@@ -59,6 +61,7 @@ export const OrderTable = () => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   const productMap = products.reduce((acc, product) => {
@@ -89,62 +92,78 @@ export const OrderTable = () => {
   };
 
   return (
-    <div className="border shadow-sm rounded-lg p-2">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="min-w-[150px]">Customer Name</TableHead>
-            <TableHead className="min-w-[150px]">Product</TableHead>
-            <TableHead className="min-w-[100px]">Quantity</TableHead>
-            <TableHead className="min-w-[150px]">Total Price</TableHead>
-            <TableHead className="min-w-[150px]">Payment Method</TableHead>
-            <TableHead className="min-w-[150px]">Status</TableHead>
-            <TableHead className="min-w-[150px]">Payment Status</TableHead>
-            <TableHead className="min-w-[150px]">Order Date</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {orders.map((order) => (
-            <TableRow key={order.id}>
-              <TableCell>{order.shipping[0].name}</TableCell>
-              <TableCell>{productMap[order.orderItem[0]?.productId]}</TableCell>
-              <TableCell>{order.orderItem[0]?.quantity}</TableCell>
-              <TableCell>${order.total}</TableCell>
-              <TableCell>{order.paymentMethod}</TableCell>
-              <TableCell>
-                <Badge className="text-xs" variant="outline">
-                  {order.status}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <Badge className="text-xs" variant="outline">
-                  {order.paymentStatus}
-                </Badge>
-              </TableCell>
-              <TableCell>{order.createdAt.slice(0, 10)}</TableCell>
-              <TableCell className="text-right">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <MoveHorizontalIcon className="w-4 h-4" />
-                      <span className="sr-only">Actions</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => handleUpdate(order.id)}>
-                      Edit
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDelete(order.id)}>
-                      Delete
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+    <>
+      {loading ? (
+        <div className="flex items-center justify-center h-96">
+          <h1 className="text-xl ">Loading...</h1>
+        </div>
+      ) : orders?.length === 0 ? (
+        <div className="flex items-center justify-center h-96">
+          <h1 className="text-xl font-semibold">No Orders Found</h1>
+        </div>
+      ) : (
+        <div className="border shadow-sm rounded-lg p-2">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="min-w-[150px]">Customer</TableHead>
+                <TableHead className="min-w-[150px]">Product</TableHead>
+                <TableHead className="min-w-[100px]">Quantity</TableHead>
+                <TableHead className="min-w-[150px]">Total Price</TableHead>
+                <TableHead className="min-w-[150px]">Payment Method</TableHead>
+                <TableHead className="min-w-[150px]">Status</TableHead>
+                <TableHead className="min-w-[150px]">Payment Status</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {orders.map((order) => (
+                <TableRow key={order.id}>
+                  <TableCell>{order.shipping[0].name}</TableCell>
+                  <TableCell>
+                    {productMap[order.orderItem[0]?.productId]}
+                  </TableCell>
+                  <TableCell>{order.orderItem[0]?.quantity}</TableCell>
+                  <TableCell>${order.total}</TableCell>
+                  <TableCell>{order.paymentMethod}</TableCell>
+                  <TableCell>
+                    <Badge className="text-xs" variant="outline">
+                      {order.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge className="text-xs" variant="outline">
+                      {order.paymentStatus}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                          <MoveHorizontalIcon className="w-4 h-4" />
+                          <span className="sr-only">Actions</span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem
+                          onClick={() => handleUpdate(order.id)}
+                        >
+                          Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => handleDelete(order.id)}
+                        >
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
+    </>
   );
 };
