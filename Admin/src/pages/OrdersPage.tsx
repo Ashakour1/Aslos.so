@@ -1,10 +1,15 @@
 import { OrderTable } from "@/components/OrdersTable";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 
 const OrdersPage = () => {
   return (
     <main className="max-w-[1200px] mx-auto my-10">
+       <Helmet>
+        <title>Orders </title>
+      </Helmet>
       <div className="flex justify-between my-5 items-center">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold">Orders</h1>
