@@ -74,7 +74,7 @@ model Shipping {
   order Order @relation(fields: [orderId], references: [id])
   name String
   phone String
-  email String
+  email String 
   address String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
