@@ -119,7 +119,7 @@ export const OrderTable = () => {
             <TableBody>
               {orders.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell>{order.shipping[0].name}</TableCell>
+                  <TableCell>{order.shipping[0]?.name}</TableCell>
                   <TableCell>
                     {productMap[order.orderItem[0]?.productId]}
                   </TableCell>
