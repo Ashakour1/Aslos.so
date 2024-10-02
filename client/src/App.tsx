@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage";
 import Products from "./pages/ProductsPage";
 import Checkout from "./components/Checkout";
 import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
@@ -36,7 +37,10 @@ function App() {
           />
           <Route path="/about/*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </Router>
+
+
     </>
   );
 }
