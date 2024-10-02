@@ -8,8 +8,10 @@ import ProductPage from "./pages/ProductPage.tsx";
 
 import { PropsWithChildren } from "react";
 import Dashboard from "./pages/Dashboard.tsx";
+import OrderFormPage from "./pages/OrderFormPage.tsx";
 import OrdersPage from "./pages/OrdersPage.tsx";
-import OrderForm from "./components/OrderForm.tsx";
+import {Helmet} from "react-helmet";
+import CustomerPage from "./pages/CustomerPage.tsx";
 
 const MainLayout = ({ children }: PropsWithChildren<{}>) => {
   return (
@@ -23,9 +25,11 @@ const MainLayout = ({ children }: PropsWithChildren<{}>) => {
 function App() {
   return (
     <>
+      <Helmet>
+        <title>Admin Dashboard</title>
+      </Helmet>
+      <Toaster />
       <Router>
-        <Toaster />
-
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route
@@ -48,7 +52,7 @@ function App() {
             path="/dashboard/orders/update/:id"
             element={
               <MainLayout>
-                <OrderForm />
+                <OrderFormPage />
               </MainLayout>
             }
           />
@@ -60,7 +64,14 @@ function App() {
               </MainLayout>
             }
           />
-
+          <Route
+            path="/dashboard/customers"
+            element={
+              <MainLayout>
+                <CustomerPage />
+              </MainLayout>
+            }
+          />
           <Route
             path="/dashboard/products"
             element={
