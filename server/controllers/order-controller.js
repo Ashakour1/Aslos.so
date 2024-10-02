@@ -37,8 +37,8 @@ export const getOrder = asyncHandler(async (req, res) => {
 export const createOrder = asyncHandler(async (req, res) => {
   const { total, paymentMethod, paymentNumber, orderItem, shipping } = req.body;
 
-  console.log("Order Items:", orderItem);
-  console.log("Shipping Details:", shipping);
+  // console.log("Order Items:", orderItem);
+  // console.log("Shipping Details:", shipping);
 
   try {
     const order = await prisma.order.create({
