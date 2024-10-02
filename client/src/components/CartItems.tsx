@@ -2,6 +2,7 @@ import { useCart } from "@/features/useCart";
 import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
 import { useCheckout } from "@/features/useCheckout";
+import { Helmet } from "react-helmet";
 
 const CartItems = () => {
   const { products, totalPrice } = useCart((state) => ({
@@ -19,8 +20,11 @@ const CartItems = () => {
   };
   return (
     <section>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
       {products.length === 0 ? (
-        <div className="text-center  flex flex-col mt-44 justify-center items-center">
+        <div className="text-center  flex flex-col my-44  items-center">
           <h2 className="text-2xl font-bold text-gray-900">
             Your cart is empty
           </h2>
