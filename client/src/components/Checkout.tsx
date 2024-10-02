@@ -7,6 +7,7 @@ import Payment from "./Payment";
 import { useCheckout } from "@/features/useCheckout";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Checkout = () => {
   const { products, totalPrice, tax, totalPriceWithTax, RemoveCart } = useCart(
@@ -128,6 +129,9 @@ const Checkout = () => {
 
   return (
     <main className="max-w-[1080px] mx-auto md:px-4 lg:px-0 px-4 py-10">
+      <Helmet>
+        <title>Checkout</title>
+      </Helmet>
       {products?.length === 0 ? (
         <div className="text-center flex flex-col mt-44 justify-center items-center">
           <h2 className="text-2xl font-bold text-gray-900">
