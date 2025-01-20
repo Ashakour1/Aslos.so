@@ -93,33 +93,44 @@ const ProductDetail = () => {
           <h1 className="text-xl ">Loading...</h1>
         </div>
       ) : (
-        <div className="flex justify-between gap-12 ">
-          <div className="flex gap-5 w-[50%] pt-10">
+        <div className="flex justify-between px-10 pt-10">
+          <div className="flex gap-5 w-[50%]">
             <img src={Product?.image} alt="" className="w-96 h-96" />
             <div className="flex flex-col gap-5 pt-1">
-              <img
-                src="https://asrv.com/cdn/shop/products/ASRVE-Comm-425-Edit_600x.jpg?v=1673555835"
-                alt=""
-                className="w-20"
-              />
-              <img
-                src="https://asrv.com/cdn/shop/products/ASRVE-Comm-425-Edit_600x.jpg?v=1673555835"
-                alt=""
-                className="w-20"
-              />
-              <img
-                src="https://asrv.com/cdn/shop/products/ASRVE-Comm-425-Edit_600x.jpg?v=1673555835"
-                alt=""
-                className="w-20"
-              />
-              <img
-                src="https://asrv.com/cdn/shop/products/ASRVE-Comm-425-Edit_600x.jpg?v=1673555835"
-                alt=""
-                className="w-20"
-              />
+              <div className="w-20 h-20 overflow-hidden">
+                <img
+                  src={Product?.image}
+                  alt="Top View"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="w-20 h-20 overflow-hidden">
+                <img
+                  src={Product?.image}
+                  alt="Bottom View"
+                  className="w-full h-full object-cover object-bottom"
+                />
+              </div>
+              {/* Left Crop */}
+              <div className="w-20 h-20 overflow-hidden">
+                <img
+                  src={Product?.image}
+                  alt="Left View"
+                  className="w-full h-full object-cover object-left"
+                />
+              </div>
+
+              {/* Right Crop */}
+              <div className="w-20 h-20 overflow-hidden">
+                <img
+                  src={Product?.image}
+                  alt="Right View"
+                  className="w-full h-full object-cover object-right"
+                />
+              </div>
             </div>
           </div>
-          <div className="border p-8 w-[50%]">
+          <div className="border p-5 w-[50%]">
             <div className="flex flex-col gap-5 max-w-md">
               <h1>
                 Name : <strong>{Product?.name}</strong>
@@ -147,7 +158,11 @@ const ProductDetail = () => {
                       }))
                     }
                     key={index}
-                    className="w-10 cursor-pointer h-10 rounded"
+                    className={`w-10 cursor-pointer h-10 rounded ${
+                      productDetail.selectedColor === color
+                        ? "border-2 border-black"
+                        : "hover:border-gray-400"
+                    }`}
                     style={{ backgroundColor: color }}
                   ></div>
                 ))}
@@ -164,7 +179,11 @@ const ProductDetail = () => {
                         selectedSize: size,
                       }))
                     }
-                    className="w-10 h-10 flex cursor-pointer border items-center text-center justify-center"
+                    className={`w-10 h-10 flex cursor-pointer border items-center text-center justify-center ${
+                      productDetail.selectedSize === size
+                        ? "border-2 border-black"
+                        : "hover:border-gray-400"
+                    } `}
                   >
                     {size}
                   </div>
